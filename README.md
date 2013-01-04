@@ -6,8 +6,6 @@ NOTE: Don't use this if you don't already know how to interact with MongoDB.  Us
 
 Installing
 =========
-THIS IS NOT IN NPM YET.  DISREGARD THE FOLLOWING.
-
 You can either install it by adding the following dependency in `package.json`:
 
     "dependencies": {
@@ -15,8 +13,6 @@ You can either install it by adding the following dependency in `package.json`:
     }
     
 and then running `npm install` or by running `npm install mongoHelper`.
-
-YOU MAY CEASE YOUR DISREGARDING NOW.
 
 Usage
 =====
@@ -28,7 +24,7 @@ First, navigate to `node_modules/mongoHelper` and open up `config.js`.  This is 
     
 Currently, only insert and find are implemented.
 
-####Insert
+###Insert
 Insert takes three parameters: `coll`, `query`, and `next`.
 
  - `coll` is a string representing the collection we want to insert `query` into
@@ -43,8 +39,16 @@ If I then wanted to run `myFunc` after that:
 
     mongoHelper.insert('foobar', {foo: 'bar'}, myfunc);
     
-####Find
+###Find
 Like insert, find takes three parameters.  The one change is that the results of the find statement will be passed to the function you input.
 
-####Remove
+###Remove
 The data removed is passed to `next`.
+
+###Update
+Update takes five parameters:
+
+ - `coll` and `next` are the same, with the updated data being sent to `next`
+ - `criteria` is the query that mongo will use to find the entries to update
+ - `update` is the entry that will update the selected documents
+ - `params` are the parameters you want to pass to `update`.  [Option values](http://mongodb.github.com/node-mongodb-native/markdown-docs/insert.html#update)
