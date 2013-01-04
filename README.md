@@ -22,8 +22,6 @@ First, navigate to `node_modules/mongoHelper` and open up `config.js`.  This is 
 
     var mongoHelper = require('mongoHelper');
     
-Currently, only insert and find are implemented.
-
 ###Insert
 Insert takes three parameters: `coll`, `query`, and `next`.
 
