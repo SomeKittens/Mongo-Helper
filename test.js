@@ -9,10 +9,12 @@ var mongoHelper = require('./mongoHelper');
 mongoHelper.insert('helperTest', {foo: 'bar'}, function() {
   mongoHelper.find('helperTest', {foo: 'bar'}, function(results) {
     console.log(results);
-    mongoHelper.find('helperTest', {foo: new RegExp(/^ba/)}, function(results) {
-      console.log(results);
-      mongoHelper.remove('helperTest', {foo: 'bar'}, function(removed){
-        console.log(removed);
+    mongoHelper.update('helperTest', {foo: 'bar'}, {foo: 'baz'}, {}, function() {
+      mongoHelper.find('helperTest', {foo: new RegExp(/^ba/)}, function(results) {
+        console.log(results);
+        mongoHelper.remove('helperTest', {foo: 'baz'}, function(removed){
+          console.log(removed);
+        });
       });
     });
   });

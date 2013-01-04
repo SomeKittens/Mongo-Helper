@@ -1,5 +1,5 @@
 {
-  "name": "mongoHelper",
+  "name": "mongo-helper",
   "version": "0.0.1",
   "author": "Randall 'SomeKittens' Koutnik <rkoutnik@gmail.com>",
   "description": "A simple CRUD wrapper for the node Mongo connector to aid in rapid application development",
@@ -19,5 +19,11 @@
   "dependencies": {
     "mongodb": "1.1.x"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "a0c0f16ccb0847f0f2e5624ef3ce4e2f0ab5a4b0",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  }
 }

@@ -34,8 +34,17 @@ module.exports = {
       });
     });
   },
-  //TODO:
-  //update: function(
+  update: function(coll, criteria, update, params, next) {
+    mdb.open(function(err, db) {
+      db.collection(coll, function(err, collection) {
+        collection.update(criteria, update, params, function(err, updated) {
+          if(err) { console.error(err);db.close();return; }
+          db.close();
+          if(typeof next === 'function') { next(updated); }
+        });
+      });
+    });
+  },
   remove: function(coll, query, func) {
     mdb.open(function(err, db) {
       db.collection(coll, function(err, collection) {
