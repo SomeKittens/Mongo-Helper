@@ -3,8 +3,10 @@
 /**
  * Configuration file for your particular database needs
  */
- 
-var config = {};
+
+var config = {}
+  //Needed for default port, remove otherwise
+  , mongo = require('mongodb');
 
 //Address where the server running Mongo can be found
 config.serverAddress = 'localhost';

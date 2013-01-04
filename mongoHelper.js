@@ -33,8 +33,17 @@ module.exports = {
         });
       });
     });
-  }
+  },
   //TODO:
   //update: function(
-  //remove: function(coll, query, one, func) {
+  remove: function(coll, query, func) {
+    mdb.open(function(err, db) {
+      db.collection(coll, function(err, collection) {
+        collection.remove(query, function(err, removed) {
+          db.close();
+          if(typeof next === 'function') { next(removed); }
+        });
+      });
+    });
+  }
 };

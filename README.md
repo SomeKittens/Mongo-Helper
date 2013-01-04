@@ -41,3 +41,6 @@ If I then wanted to run `myFunc` after that:
     
 ####Find
 Like insert, find takes three parameters.  The one change is that the results of the find statement will be passed to the function you input.
+
+####Remove
+The data removed is passed to `next`.
