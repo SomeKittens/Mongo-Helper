@@ -6,6 +6,8 @@ NOTE: Don't use this if you don't already know how to interact with MongoDB.  Us
 
 Installing
 =========
+THIS IS NOT IN NPM YET.  DISREGARD THE FOLLOWING.
+
 You can either install it by adding the following dependency in `package.json`:
 
     "dependencies": {
@@ -13,6 +15,8 @@ You can either install it by adding the following dependency in `package.json`:
     }
     
 and then running `npm install` or by running `npm install mongoHelper`.
+
+YOU MAY CEASE YOUR DISREGARDING NOW.
 
 Usage
 =====
