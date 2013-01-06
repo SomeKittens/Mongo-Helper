@@ -11,6 +11,28 @@ var mongo = require('mongodb')
  * completed.  The results of the find query (if applicable) will be passed to it
  * AFTER the database is closed, so you can execute another db call.
  */
+ 
+function getCollection(action, coll, callback) {
+  mdb.open(function(err, db) {
+    db.collection(coll, callback);
+  });
+}
+
+function cleanup(next, db) {
+  return function() {
+    db.close();
+    if(typeof next === 'function') {
+      next();
+    }
+  };
+}
+
+function error(err) {
+  if(err) {
+    console.error(err);
+    db.close();
+  }
+}
 
 module.exports = {
   insert: function(coll, query, next) {
