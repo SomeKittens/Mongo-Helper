@@ -9,6 +9,8 @@
     "url": "https://github.com/SomeKittens/Mongo-Helper"
   },
   "keywords": [
+    "simple-mongo",
+    "mongo",
     "mongodb",
     "CRUD"
   ],
@@ -22,8 +24,10 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "a0c0f16ccb0847f0f2e5624ef3ce4e2f0ab5a4b0",
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "1.7.x"
+  },
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha test.js -u tdd"
   }
 }
