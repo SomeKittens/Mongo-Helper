@@ -1,14 +1,16 @@
 'use strict';
+/*global suite:false*/
+/*global test:false*/
 
 /**
  * Some basic tests to make sure I didn't screw up anything
  */
 
-var mongoHelper = require('./mongoHelper')
-  , config = require('./config')
+var config = require('./configDefaults')
+  , mongoHelper = new (require('./mongo-helper'))({serverAddress: 'localhast'})
   , mongo = require('mongodb')
-  , server = new mongo.Server(config.serverAddress, config.serverPort, config.serverParams)
-  , mdb = new mongo.Db(config.dbName, server, config.dbParams)
+  , server = new mongo.Server(config.serverAddress, config.serverPort, config.serverOptions)
+  , mdb = new mongo.Db(config.dbName, server, config.dbOptions)
   , assert = require('assert');
 
 //checkResult is for testing methods that impact that database instead of returning something

@@ -1,6 +1,6 @@
 {
   "name": "mongo-helper",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "author": "Randall 'SomeKittens' Koutnik <rkoutnik@gmail.com>",
   "description": "A simple CRUD wrapper for the node Mongo connector to aid in rapid application development",
   "main": "mongoHelper",

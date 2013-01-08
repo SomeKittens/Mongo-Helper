@@ -9,19 +9,33 @@ Installing
 You can either install it by adding the following dependency in `package.json`:
 
     "dependencies": {
-      "mongoHelper": "*" //Using * for versioning isn't recommended.  I'll fix that in the future.
+      "mongo-helper": "0.1.x"
     }
     
-and then running `npm install` or by running `npm install mongoHelper`.
+and then running `npm install` or by running `npm install mongoHelper` in your project directory.
 
 Usage
 =====
 Now that you've installed mongoHelper, how can you use it?
 
-First, navigate to `node_modules/mongoHelper` and open up `config.js`.  This is initalized with some defaut settings, but you probably want to alter them to meet your needs.  Then, require the mongoHelper object with:
+Sadly, Mongo Helper can't read your mind (yet), so you'll need to provide it with some parameters about your particular needs.  The simple way to require this is:
 
-    var mongoHelper = require('mongoHelper');
+    var mongoHelper = new (require('mongo-helper'))({Parameters: 'here'});
     
+It's also possible (and might work better, depending on your project) to define a `config` object and pass that:
+
+    var mongoHelper = new (require('mongo-helper'))(config);
+    
+Mongo Helper takes the following parameters (if you don't include them, Mongo Helper will revert to a default value)
+
+ - `serverAddress` - The IP/Address of the MongoDB server (default: `localhost`)
+ - `serverPort` - Port used to connect to the mongoDB server (default: `mongo.Connection.DEFAULT_PORT`)
+ - `serverOptions` - Options to pass to the server (in an object literal) (default: `{auto_reconnect: true}`)
+   - You can find all possible options [at the docs](http://mongodb.github.com/node-mongodb-native/api-generated/server.html#constructor)
+ - `dbName` - Name of the database you'll be using (default: `test`)
+ - `dbOptions` - Options to pass to the db constructor (in an object literal) (default: `{safe: true}`)
+   - [All possible options](http://mongodb.github.com/node-mongodb-native/api-generated/db.html#constructor)
+
 ###Insert
 Insert takes three parameters: `coll`, `query`, and `next`.
 
