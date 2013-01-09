@@ -7,7 +7,7 @@
  */
 
 var config = require('./configDefaults')
-  , mongoHelper = new (require('./mongo-helper'))({serverAddress: 'localhast'})
+  , mongoHelper = new (require('./mongo-helper'))()
   , mongo = require('mongodb')
   , server = new mongo.Server(config.serverAddress, config.serverPort, config.serverOptions)
   , mdb = new mongo.Db(config.dbName, server, config.dbOptions)
@@ -48,7 +48,7 @@ suite('insert', function() {
     });
   });
   test('update should change data that is already in the db', function(done) {
-    mongoHelper.update('helperTest', {foo: 'bar'}, {foo: 'baz'}, {}, function(updated) {
+    mongoHelper.update('helperTest', {foo: 'bar'}, {$set: {foo: 'baz'}}, {}, function(updated) {
       assert.equal(updated, 1, 'Update test returned incorrect value');
       checkResult('baz', 'Update check failed', done);
     });
