@@ -35,6 +35,7 @@ Mongo Helper takes the following parameters (if you don't include them, Mongo He
  - `dbName` - Name of the database you'll be using (default: `test`)
  - `dbOptions` - Options to pass to the db constructor (in an object literal) (default: `{safe: true}`)
    - [All possible options](http://mongodb.github.com/node-mongodb-native/api-generated/db.html#constructor)
+ - `url` - If you wish to connect via a url provided (say, through MongoHQ) pass it through url
 
 ###Insert
 Insert takes three parameters: `coll`, `query`, and `next`.

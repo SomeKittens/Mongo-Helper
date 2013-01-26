@@ -16,6 +16,8 @@ function Helper(config) {
     config.dbName = config.dbName || 'test';
     //Parameters to pass to the database
     config.dbOptions = config.dbOptions || {safe: true};
+    //Used to connect to external instances of MongoDB
+    config.url = config.url || false;
   }
 
   var server = new mongo.Server(config.serverAddress, config.serverPort, config.serverOptions)
@@ -28,17 +30,32 @@ function Helper(config) {
    * operation contains the db operation that we want to execute
    */
   this.getCollection = function(coll, next, operation) {
-    mdb.open(function(err, db) {
-      db.collection(coll, function(err, collection) {
-        operation(err, collection, function(err, results) {
-          if(err) { console.error(err); }
-          db.close();
-          if(typeof next === 'function') {
-            next(results);
-          }
+    //TODO: clean this up
+    if(config.url) {
+      mongo.Db.connect(config.url, function(err, db) {
+        db.collection(coll, function(err, collection) {
+          operation(err, collection, function(err, results) {
+            if(err) { console.error(err); }
+            db.close();
+            if(typeof next === 'function') {
+              next(results);
+            }
+          });
         });
       });
-    });
+    } else {
+      mdb.open(function(err, db) {
+        db.collection(coll, function(err, collection) {
+          operation(err, collection, function(err, results) {
+            if(err) { console.error(err); }
+            db.close();
+            if(typeof next === 'function') {
+              next(results);
+            }
+          });
+        });
+      });
+    }
   };
 }
 
