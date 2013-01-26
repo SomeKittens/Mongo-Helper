@@ -32,7 +32,7 @@ function Helper(config) {
   this.getCollection = function(coll, next, operation) {
     //TODO: clean this up
     if(config.url) {
-      mongo.Db.connect(config.url, function(err, db) {
+      mongo.Db.connect(config.url, {db: config.dbOptions, server: config.serverOptions}, function(err, db) {
         db.collection(coll, function(err, collection) {
           operation(err, collection, function(err, results) {
             if(err) { console.error(err); }

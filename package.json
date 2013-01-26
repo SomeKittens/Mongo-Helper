@@ -15,8 +15,8 @@
     "CRUD"
   ],
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": ">= 0.8.x",
+    "npm": ">= 1.1.x"
   },
   "dependencies": {
     "mongodb": "1.1.x"
