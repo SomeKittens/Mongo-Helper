@@ -42,7 +42,7 @@ Insert takes three parameters: `coll`, `query`, and `next`.
 
  - `coll` is a string representing the collection we want to insert `query` into
  - `query` is the object to be inserted into the collection
- - `next` is a function that will be called after the db operations finish.  The database is closed before `next` is called, so you can call another db operation with `next`.
+ - `next` is a function that will be called after the db operations finish.  The database is closed before `next` is called, so you can call another db operation with `next`.  `err` and `results` are passed to `next` in typical node style.
  
 For example, if I wanted to insert `{foo: 'bar'}` into the `foobar` collection (and had required it like above, I would write:
 
@@ -50,18 +50,21 @@ For example, if I wanted to insert `{foo: 'bar'}` into the `foobar` collection (
     
 If I then wanted to run `myFunc` after that:
 
-    mongoHelper.insert('foobar', {foo: 'bar'}, myfunc);
+    mongoHelper.insert('foobar', {foo: 'bar'}, myFunc);
     
 ###Find
 Like insert, find takes three parameters.  The one change is that the results of the find statement will be passed to the function you input.
 
 ###Remove
-The data removed is passed to `next`.
+The number of entries removed is passed to `next` in the `results` variable.
 
 ###Update
 Update takes five parameters:
 
- - `coll` and `next` are the same, with the updated data being sent to `next`
+ - `coll` and `next` are the same, with the number of updated entries being sent to `next`
  - `criteria` is the query that mongo will use to find the entries to update
  - `update` is the entry that will update the selected documents
  - `params` are the parameters you want to pass to `update`.  [Option values](http://mongodb.github.com/node-mongodb-native/markdown-docs/insert.html#update)
+
+Tests
+=====

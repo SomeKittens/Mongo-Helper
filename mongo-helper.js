@@ -35,11 +35,8 @@ function Helper(config) {
       mongo.Db.connect(config.url, {db: config.dbOptions, server: config.serverOptions}, function(err, db) {
         db.collection(coll, function(err, collection) {
           operation(err, collection, function(err, results) {
-            if(err) { console.error(err); }
             db.close();
-            if(typeof next === 'function') {
-              next(results);
-            }
+            next(err, results);
           });
         });
       });
@@ -47,11 +44,8 @@ function Helper(config) {
       mdb.open(function(err, db) {
         db.collection(coll, function(err, collection) {
           operation(err, collection, function(err, results) {
-            if(err) { console.error(err); }
             db.close();
-            if(typeof next === 'function') {
-              next(results);
-            }
+            next(err, results);
           });
         });
       });

@@ -36,25 +36,25 @@ suite('insert', function() {
   });
   //Find tests don't use checkResult, as that would be silly
   test('find should return the data inserted in the previous test', function(done) {
-    mongoHelper.find('helperTest', {foo: 'bar'}, function(results) {
+    mongoHelper.find('helperTest', {foo: 'bar'}, function(err, results) {
       assert.equal(results[0].foo, 'bar', 'First Find test failed');
       done();
     });
   });
   test('find should also work with regular expressions', function(done) {
-    mongoHelper.find('helperTest', {foo: new RegExp(/ar$/)}, function(results) {
+    mongoHelper.find('helperTest', {foo: new RegExp(/ar$/)}, function(err, results) {
       assert.equal(results[0].foo, 'bar', 'RegExp Find test failed');
       done();
     });
   });
   test('update should change data that is already in the db', function(done) {
-    mongoHelper.update('helperTest', {foo: 'bar'}, {$set: {foo: 'baz'}}, {}, function(updated) {
+    mongoHelper.update('helperTest', {foo: 'bar'}, {$set: {foo: 'baz'}}, {}, function(err, updated) {
       assert.equal(updated, 1, 'Update test returned incorrect value');
       checkResult('baz', 'Update check failed', done);
     });
   });
   test('remove should delete all the test data we have generated', function(done) {
-    mongoHelper.remove('helperTest', {foo: 'baz'}, function(removed) {
+    mongoHelper.remove('helperTest', {foo: 'baz'}, function(err, removed) {
       assert.equal(removed, 1, 'Remove test returned incorrect value');
       mdb.open(function(err, db) {
         db.collection('helperTest', function(err, collection) {
